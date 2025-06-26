@@ -28,6 +28,17 @@ function App() {
     })
   }
 
+  const deletePerson = (id) => {
+    personsService.deleteOne(id).then((status) => {
+      if (status === 200) {
+        alert("Person deleted");
+        setPersons(persons.filter((person) => person.id !== id));
+      } else {
+        alert("There was an error");
+      }
+    });
+  }
+
   const filterPersons = () => persons.filter((person) => person.name.toLowerCase().includes(filter.toLowerCase()));
 
   const displayedPersons = filter ? filterPersons() : persons;
@@ -39,7 +50,7 @@ function App() {
       <Form persons={persons} addPerson={addPerson}></Form>
       <h2>Saved numbers</h2>
       <Filter onChange={handleFilterChange} value={filter}></Filter>
-      <PersonsList persons={displayedPersons}></PersonsList>
+      <PersonsList persons={displayedPersons} deletePerson={deletePerson}></PersonsList>
     </div>
   )
 }

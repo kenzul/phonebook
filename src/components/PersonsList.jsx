@@ -1,8 +1,9 @@
+import PersonItem from "./PersonItem";
 
-const PersonsList = ({ persons }) => {
+const PersonsList = ({ persons, deletePerson }) => {
     return (
-        <ul>
-            {persons.map((person) => <li key={person.id}>{person.name} {person.number}</li>)}
+        <ul style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            {persons.map((person) => <PersonItem key={person.id} person={person} deletePerson={deletePerson}></PersonItem>)}
         </ul>
     )
 }
