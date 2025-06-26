@@ -29,6 +29,10 @@ function App() {
   }
 
   const deletePerson = (id) => {
+    const confirmation = window.confirm("Are you sure that you want to delete this person?");
+    if (!confirmation) {
+      return;
+    }
     personsService.deleteOne(id).then((status) => {
       if (status === 200) {
         alert("Person deleted");
