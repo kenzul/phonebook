@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import Form from "./components/PersonForm/Form";
 import Filter from "./components/Filter";
 import PersonsList from "./components/PersonsList";
-import axios from "axios";
+import personsService from "./services/persons";
 
 function App() {
 
@@ -11,8 +11,11 @@ function App() {
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
-    const promise = axios.get("http://localhost:3001/persons");
-    promise.then((response) => setPersons(response.data));
+
+    personsService.getAll().then((data) => {
+      setPersons(data);
+    });
+
   }, []);
 
   const handleFilterChange = (event) => {
