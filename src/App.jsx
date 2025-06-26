@@ -30,6 +30,10 @@ function App() {
         </div>
         <button type="submit">Add</button>
       </form>
+      <h2>Numbers</h2>
+      <ul>
+        {persons.map((person) => <li key={person.id}>{person.name}</li>)}
+      </ul>
     </div>
   )
 }
