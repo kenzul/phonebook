@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Form from "./components/PersonForm/Form";
 import Filter from "./components/Filter";
+import PersonsList from "./components/PersonsList";
 
 function App() {
 
@@ -31,9 +32,7 @@ function App() {
       <Form persons={persons} addPerson={addPerson}></Form>
       <h2>Numbers</h2>
       <Filter onChange={handleFilterChange} value={filter}></Filter>
-      <ul>
-        {displayedPersons.map((person) => <li key={person.id}>{person.name} {person.number}</li>)}
-      </ul>
+      <PersonsList persons={displayedPersons}></PersonsList>
     </div>
   )
 }
