@@ -45,6 +45,10 @@ function App() {
     return persons.some((person) => person.name.toLowerCase() === name.toLowerCase());
   }
 
+  const filterPersons = () => persons.filter((person) => person.name.toLowerCase().includes(filter.toLowerCase()));
+
+  const displayedPersons = filter ? filterPersons() : persons;
+
   return (
     <div>
       <h1>Phonebook</h1>
@@ -64,7 +68,7 @@ function App() {
         <input type="text" placeholder="Arto Hellas" value={filter} onChange={handleFilterChange}></input>
       </p>
       <ul>
-        {persons.map((person) => <li key={person.id}>{person.name} {person.number}</li>)}
+        {displayedPersons.map((person) => <li key={person.id}>{person.name} {person.number}</li>)}
       </ul>
     </div>
   )
