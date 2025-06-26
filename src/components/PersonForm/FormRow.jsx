@@ -1,4 +1,4 @@
-import Input from "../Input"
+import Input from "./Input"
 
 const FormRow = ({ name, text, onChange, value, type }) => {
     return (
