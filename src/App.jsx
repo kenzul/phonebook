@@ -2,7 +2,7 @@ import { useState } from "react"
 
 function App() {
   const [persons, setPersons] = useState([
-    { name: "Arto Hellas", id: 1 }
+    { name: "Arto Hellas", id: 0 }
   ]);
   const [newName, setNewName] = useState("");
 
@@ -10,10 +10,20 @@ function App() {
     setNewName(event.target.value);
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newPerson = {
+      name: newName,
+      id: persons.length
+    };
+    setPersons({ ...persons, newPerson });
+    setNewName("");
+  }
+
   return (
     <div>
       <h1>Phonebook</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="row">
           <label htmlFor="name">Name:</label>
           <input onChange={handleNameChange} type="text" id="name" name="name" value={newName} />
