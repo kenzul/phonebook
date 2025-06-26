@@ -12,12 +12,20 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (checkDuplicate(newName)) {
+      alert(`${newName} is already added to phonebook`);
+      return;
+    }
     const newPerson = {
       name: newName,
       id: persons.length
     };
     setPersons({ ...persons, newPerson });
     setNewName("");
+  }
+
+  const checkDuplicate = (name) => {
+    return persons.some((person) => person.name.toLowerCase() === name.toLowerCase());
   }
 
   return (
