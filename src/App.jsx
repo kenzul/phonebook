@@ -29,8 +29,9 @@ function App() {
   return (
     <div>
       <h1>Phonebook</h1>
+      <h2>Add a new person</h2>
       <Form persons={persons} addPerson={addPerson}></Form>
-      <h2>Numbers</h2>
+      <h2>Saved numbers</h2>
       <Filter onChange={handleFilterChange} value={filter}></Filter>
       <PersonsList persons={displayedPersons}></PersonsList>
     </div>
