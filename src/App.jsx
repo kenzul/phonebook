@@ -43,6 +43,12 @@ function App() {
     });
   }
 
+  const updatePerson = (id, update) => {
+    personsService.update(id, update).then((updatedPerson) => {
+      setPersons(persons.map((person) => person.id === id ? updatedPerson : person));
+    });
+  }
+
   const filterPersons = () => persons.filter((person) => person.name.toLowerCase().includes(filter.toLowerCase()));
 
   const displayedPersons = filter ? filterPersons() : persons;
@@ -51,7 +57,7 @@ function App() {
     <div>
       <h1>Phonebook</h1>
       <h2>Add a new person</h2>
-      <Form persons={persons} addPerson={addPerson}></Form>
+      <Form persons={persons} addPerson={addPerson} updatePerson={updatePerson}></Form>
       <h2>Saved numbers</h2>
       <Filter onChange={handleFilterChange} value={filter}></Filter>
       <PersonsList persons={displayedPersons} deletePerson={deletePerson}></PersonsList>

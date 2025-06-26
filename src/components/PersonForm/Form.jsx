@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FormRow from "./FormRow"
 
-const Form = ({ persons, addPerson }) => {
+const Form = ({ persons, addPerson, updatePerson }) => {
     const [newName, setNewName] = useState("");
     const [newNumber, setNewNumber] = useState("");
 
@@ -13,20 +13,22 @@ const Form = ({ persons, addPerson }) => {
         setNewNumber(event.target.value);
     }
 
-    const checkDuplicate = (name) => {
-        return persons.some((person) => person.name.toLowerCase() === name.toLowerCase());
+    const findDuplicate = (name) => {
+        return persons.find((person) => person.name === name);
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (checkDuplicate(newName)) {
-            alert(`${newName} is already added to phonebook`);
-            return;
-        }
         const newPerson = {
             name: newName,
             number: newNumber
         };
+        const duplicate = findDuplicate(newName);
+        if (duplicate) {
+            alert(`Updating ${newName}'s number...`);
+            updatePerson(duplicate.id, newPerson);
+            return;
+        }
         addPerson(newPerson);
         setNewName("");
         setNewNumber("");
