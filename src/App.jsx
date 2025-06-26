@@ -23,7 +23,9 @@ function App() {
   }
 
   const addPerson = (newPerson) => {
-    setPersons(persons.concat(newPerson));
+    personsService.create(newPerson).then((createdPerson) => {
+      setPersons(persons.concat(createdPerson));
+    })
   }
 
   const filterPersons = () => persons.filter((person) => person.name.toLowerCase().includes(filter.toLowerCase()));

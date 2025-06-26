@@ -25,8 +25,7 @@ const Form = ({ persons, addPerson }) => {
         }
         const newPerson = {
             name: newName,
-            number: newNumber,
-            id: persons.length
+            number: newNumber
         };
         addPerson(newPerson);
         setNewName("");
