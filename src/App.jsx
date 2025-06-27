@@ -77,7 +77,7 @@ function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <Notification message={notification.message} type={notification.type}></Notification>
+      {notification.message && <Notification message={notification.message} type={notification.type}></Notification>}
       <h2>Add a new person</h2>
       <Form persons={persons} addPerson={addPerson} updatePerson={updatePerson}></Form>
       <h2>Saved numbers</h2>

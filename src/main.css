@@ -1,13 +1,15 @@
 .notification {
     padding: 1rem;
-    background-color: slategray;
-    font-size: 1.2rem;
+    background-color: lightgray;
+    font-size: 1.3rem;
 }
 
 .notification.success {
     border: 2px solid green;
+    color: green;
 }
 
 .notification.error {
     border: 2px solid red;
+    color: red;
 }
