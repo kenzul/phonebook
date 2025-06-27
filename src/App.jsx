@@ -58,6 +58,10 @@ function App() {
       if (status === 200) {
         alert("Person deleted");
         setPersons(persons.filter((person) => person.id !== id));
+        setNotification({
+          type: "success",
+          message: "Number deleted successfully"
+        });
       } else {
         alert("There was an error");
       }
@@ -67,6 +71,10 @@ function App() {
   const updatePerson = (id, update) => {
     personsService.update(id, update).then((updatedPerson) => {
       setPersons(persons.map((person) => person.id === id ? updatedPerson : person));
+      setNotification({
+        type: "success",
+        message: "Number updated successfully"
+      });
     });
   }
 
