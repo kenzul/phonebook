@@ -3,12 +3,18 @@ import Form from "./components/PersonForm/Form";
 import Filter from "./components/Filter";
 import PersonsList from "./components/PersonsList";
 import personsService from "./services/persons";
+import Notification from "./components/Notification";
 
 function App() {
 
   const [persons, setPersons] = useState([]);
 
   const [filter, setFilter] = useState("");
+
+  const [notification, setNotification] = useState({
+    type: "none",
+    message: ""
+  });
 
   useEffect(() => {
 
@@ -18,6 +24,17 @@ function App() {
 
   }, []);
 
+  useEffect(() => {
+    if (notification.type !== "none") {
+      const timeout = setTimeout(() => {
+        setNotification({ type: "none", message: "" });
+      }, 3000);
+      return () => {
+        clearTimeout(timeout);
+      }
+    }
+  }, [notification])
+
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
   }
@@ -25,6 +42,10 @@ function App() {
   const addPerson = (newPerson) => {
     personsService.create(newPerson).then((createdPerson) => {
       setPersons(persons.concat(createdPerson));
+      setNotification({
+        type: "success",
+        message: "Number added successfully"
+      });
     })
   }
 
@@ -56,6 +77,7 @@ function App() {
   return (
     <div>
       <h1>Phonebook</h1>
+      <Notification message={notification.message} type={notification.type}></Notification>
       <h2>Add a new person</h2>
       <Form persons={persons} addPerson={addPerson} updatePerson={updatePerson}></Form>
       <h2>Saved numbers</h2>
