@@ -65,6 +65,11 @@ function App() {
       } else {
         alert("There was an error");
       }
+    }).catch(() => {
+      setNotification({
+        type: "error",
+        message: "There was an error while trying to delete"
+      });
     });
   }
 
